@@ -6,19 +6,18 @@ var api = express();
 var DEFAULT_PORT = 3000;
 var contacts = [];
 
-api.get('/', function(req, res, next){
-    res.send('Hello world');
-});
+api.use(express.static('public'))
 
-api.get('/contacts', function(req, res, next){
+
+api.get('/api/contacts', function(req, res, next){
     res.send(contacts);
 });
 
-api.get('/contacts/:name', function(req, res, next){
+api.get('/api/contacts/:name', function(req, res, next){
     res.send(contacts);
 });
 
-api.post('/contacts',
+api.post('/api/contacts',
 bodyparser.json(),
 function(req, res, next){
     var contact = req.body.contact
@@ -30,7 +29,7 @@ function(req, res, next){
     res.send(contact);
 });
 
-api.put('/contacts/:name/:new', function(req, res, next){
+api.put('/api/contacts/:name/:new', function(req, res, next){
     var count = 0;
     contacts = contacts.map(function(contact){
         if (contact.name === req.params.name){
@@ -43,7 +42,7 @@ api.put('/contacts/:name/:new', function(req, res, next){
     res.send({count: count});
 });
 
-api.delete('/contacts/:name', function(req, res, next){
+api.delete('/api/contacts/:name', function(req, res, next){
     var count = 0;
     contacts = _.remove(contacts, function(contact){
         if (contact.name !== req.params.name){
