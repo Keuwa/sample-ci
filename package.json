@@ -7,5 +7,9 @@
     "test": "mocha"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "supertest": "^1.2.0"
+  }
 }
