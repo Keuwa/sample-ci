@@ -8,14 +8,14 @@ describe('API',function () {
 
     it('GET /contact should return list of contacts', function () {
       return request(api)
-      .get('/contact')
+      .get('/contacts')
       .send()
       .expect(200);
     })
 
     it('GET/contact/:name should return the list of registered contact with that name',function () {
       return request(api)
-      .get()
+      .get('/contacts/foo')
       .expect(200)
       .expect(function (res,err) {
         return res.body instanceof Array
@@ -24,14 +24,14 @@ describe('API',function () {
 
       it('POST /contacts should create a new contact',function () {
         return request(api)
-        .post()
-        .send({name:'edward'})
+        .post('/contacts')
+        .send({contacts: {name:'edward'}})
         .expect(200);
       })
 
       it('PUT /contacts/:name/:new update contact with name',function () {
         return request(api)
-        .put('/contact/foo/bar')
+        .put('/contacts/foo/bar')
         .send()
         .expect(200);
       })
